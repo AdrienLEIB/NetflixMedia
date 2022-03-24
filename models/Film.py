@@ -1,8 +1,8 @@
 from flask_mongoengine import MongoEngine
 db = MongoEngine()
 
+class Film(db.Document):
 
-class Serie(db.Document):
     title = db.StringField()
     url = db.StringField()
     categorie = db.StringField()
