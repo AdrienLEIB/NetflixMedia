@@ -1,5 +1,4 @@
 from flask_mongoengine import MongoEngine
-import uuid
 db = MongoEngine()
 
 class Film(db.Document):

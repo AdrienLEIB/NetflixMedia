@@ -1,7 +1,5 @@
-
-from flask import render_template, redirect, url_for, request, abort, jsonify
+from flask import request, jsonify
 from models.Serie import Serie
-import uuid
 
 def get_series():
     series = Serie.objects()
