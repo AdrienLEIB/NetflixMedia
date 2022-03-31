@@ -2,8 +2,9 @@ from flask import request, jsonify
 from models.Film import Film
 
 def get_films():
-    films = Film.objects()
-    return jsonify(films), 200
+    if request.get_json():
+        return jsonify( Film.objects(**request.get_json())), 200
+    return jsonify( Film.objects()), 200
 
 def get_film(id):
     return jsonify(Film.objects.get_or_404(id=id)), 200
