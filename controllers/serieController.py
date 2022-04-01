@@ -1,14 +1,18 @@
 from flask import request, jsonify
 from models.Serie import Serie
 from models.Episode import Episode
+from controllers.userController import user_sub
 
+@user_sub
 def get_series():
     if request.get_json():
         return jsonify( Serie.objects(**request.get_json())), 200
     return jsonify(Serie.objects()), 200
 
+
 def get_serie(id):
     return jsonify(Serie.objects.get_or_404(id=id)), 200
+
 
 def create_serie():
     body = request.get_json()
@@ -20,6 +24,7 @@ def create_serie():
                 episode.idSerie = str(serie.id)
                 episode.save()
     return jsonify(serie), 201
+
 
 def update_serie(id):
     body = request.get_json()
@@ -33,6 +38,7 @@ def update_serie(id):
                 episode.save()
 
     return jsonify(Serie.objects.get_or_404(id=id)), 201
+
 
 def delete_serie(id):
     serie = Serie.objects.get_or_404(id=id)
