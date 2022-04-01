@@ -1,9 +1,7 @@
 from flask import request, jsonify
 from models.Serie import Serie
 from models.Episode import Episode
-from controllers.userController import user_sub
 
-@user_sub
 def get_series():
     if request.get_json():
         return jsonify( Serie.objects(**request.get_json())), 200

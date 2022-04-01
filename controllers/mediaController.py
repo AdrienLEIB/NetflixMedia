@@ -1,8 +1,6 @@
 from flask import request, jsonify
 from models.Media import Media
-from controllers.userController import user_sub
 
-@user_sub
 def get_medias():
     if request.get_json():
         return jsonify( Media.objects(**request.get_json())), 200

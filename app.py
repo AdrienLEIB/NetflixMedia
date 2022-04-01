@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, request
 from flask_mongoengine import MongoEngine
 from routes.serieRoute import series_route
 from routes.filmRoute import films_route
 from routes.mediaRoute import medias_route
 from routes.episodeRoute import episodes_route
-from  routes.swaggerRoute import swagger_route
-
+from routes.swaggerRoute import swagger_route
+import requests
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -21,6 +21,17 @@ db.init_app(app)
 def hello_world():  # put application's code here
     return 'Hello World!'
 
+
+@app.before_request
+def before_request_func():
+    try:
+        r = requests.get(f'http://127.0.0.1:5001/users/{request.headers.get("idUser")}')
+        if r.json()['status'] == 'on':
+            pass
+        else:
+            return "400"
+    except Exception:
+        return "500"
 
 
 if __name__ == '__main__':
