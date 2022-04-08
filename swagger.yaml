@@ -704,8 +704,7 @@ components:
           example: Widget Adapter
         url:
           type: string
-          format: date-time
-          example: '2016-08-29T09:12:33.001Z'
+          example: 'https://www.youtube.com/watch?v=BTOVgWjUoDo'
         categorie:
           type: string
           example: Widget Adapter
